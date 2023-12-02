@@ -1,5 +1,5 @@
 #define ACTIVIDAD_H
-#ifndef ACTIVDAD_H
+#ifndef ACTIVIDAD_H
 
 #include <iostream>
 #include <string>
