@@ -19,9 +19,9 @@ class Actividad{
 		Actividad(	std::string name="empty",
 					int act_id,
 					std::string begin_date="empty",
-					std::string end_date"empty",
+					std::string end_date="empty",
 					bool status=false,
-					std::string description"empty",
+					std::string description="empty",
 					int capacity=0,
 					int faculty_id=0) {act_id_=act_id;}
 		
