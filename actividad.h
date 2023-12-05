@@ -15,7 +15,6 @@ class Actividad{
 		std::string description_;
 		int capacity_;
 		int faculty_id_;
-		std::list<Actividad> activity_list_;
 
 	public:
 		Actividad(	int act_id,
