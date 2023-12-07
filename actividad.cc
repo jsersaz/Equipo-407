@@ -11,7 +11,8 @@ void CreateAct(int act_count,std::list <Actividad> act_list)
 
 void ChangeAct(Actividad a)
 {
-    int id=a.GetActId();
+    std::string s;
+    int id=a.GetActId(),n,i;
     std::cout<<"Seleccione el campo a modificar:"<<std::endl;
     std::cout<<"1)Nombre"<<std::endl;
     std::cout<<"2)Fecha de inicio"<<std::endl;
@@ -19,52 +20,54 @@ void ChangeAct(Actividad a)
     std::cout<<"4)Descripcion"<<std::endl;
     std::cout<<"5)Aforo"<<std::endl;
     std::cout<<"6)ID de la facultad"<<std::endl;
-    switch(int i)
+    std::cin>>i;
+    std::cout<<std::endl;
+    switch(i)
     {
         case 1:
-            std::string n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
-            std::cin>>n;
-            a.SetName(n);
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
+            std::cin>>s;
+            a.SetName(s);
+            std::cout<<std::endl;
         break;
 
         case 2:
-            std::string n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
-            std::cin>>n;
-            a.SetBeginDate(n);
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
+            std::cin>>s;
+            a.SetBeginDate(s);
+            std::cout<<std::endl;
         break;
 
         case 3:
-            std::string n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
-            std::cin>>n;
-            a.SetEndDate(n);
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
+            std::cin>>s;
+            a.SetEndDate(s);
+            std::cout<<std::endl;
         break;
 
         case 4:
-            std::string n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
-            std::cin>>n;
-            a.SetDescription(n);
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
+            std::cin>>s;
+            a.SetDescription(s);
+            std::cout<<std::endl;
         break;
 
         case 5:
-            int n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
             std::cin>>n;
             a.SetCapacity(n);
+            std::cout<<std::endl;
         break;
 
         case 6:
-            int n;
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: "<<std::endl;
             std::cin>>n;
             a.SetFacultyId(n);
+            std::cout<<std::endl;
         break;
 
         default:
-            std::cout<<"Error, valor incorrecto"<<std::endl;
+            std::cout<<"Error, valor incorrecto"<<std::endl<<std::endl;
         break;
     }
 }
@@ -73,18 +76,19 @@ void AddInfo(Actividad a)
 {
     std::string name,description,begin_date,end_date;
 	int capacity,faculty_id;
-    std::cout<<"Introduzca el nombre de la actividad:";
-    std::cin>>name;
-    std::cout<<"Introduzca la descripcion de la actividad:";
-    std::cin>>descripcion;
-    std::cout<<"Introduzca la fecha de inicio de la actividad:";
+    std::cout<<"Introduzca el nombre de la actividad: ";
+    getline(std::cin,name);
+    std::cout<<"Introduzca la fecha de inicio de la actividad: ";
     std::cin>>begin_date;
-    std::cout<<"Introduzca la fecha de finalizacion de la actividad:";
+    std::cout<<"Introduzca la fecha de finalizacion de la actividad: ";
     std::cin>>end_date;
-    std::cout<<"Introduzca el aforo de la actividad:";
+    std::cout<<"Introduzca el aforo de la actividad: ";
     std::cin>>capacity;
-    std::cout<<"Introduzca el id de la facultad a la que se asocia la actividad:";
+    std::cout<<"Introduzca el id de la facultad a la que se asocia la actividad: ";
     std::cin>>faculty_id;
+    std::cout<<"Introduzca la descripcion de la actividad: ";
+    getline(std::cin,description);
+    std::cout<<std::endl;
     a.SetName(name);
 	a.SetBeginDate(begin_date);
 	a.SetEndDate(end_date);
@@ -112,13 +116,13 @@ void SeeActs(int rol, std::list<Actividad> act_list)
         {
             if(it->GetStatus()==true)
             {
-                std::cout<<it->GetActId()<<std::endl;
-                std::cout<<it->GetName()<<std::endl;
-                std::cout<<it->GetBeginDate()<<std::endl;
-                std::cout<<it->GetEndDate()<<std::endl;
-                std::cout<<it->GetDescription()<<std::endl;
-                std::cout<<it->GetCapacity()<<std::endl;
-                std::cout<<it->GetFacultyId()<<std::endl;
+                std::cout<<"ID: "<<it->GetActId()<<std::endl;
+                std::cout<<"Nombre: "<<it->GetName()<<std::endl;
+                std::cout<<"Fecha de Inicio: "<<it->GetBeginDate()<<std::endl;
+                std::cout<<"Fecha de Finalizacion: "<<it->GetEndDate()<<std::endl;
+                std::cout<<"Aforo: "<<it->GetCapacity()<<std::endl;
+                std::cout<<"ID de facultad: "<<it->GetFacultyId()<<std::endl;
+                std::cout<<"Descripcion: "<<it->GetDescription()<<std::endl<<std::endl;
             }
         }
     }
@@ -126,14 +130,21 @@ void SeeActs(int rol, std::list<Actividad> act_list)
     {
         for(auto it=act_list.begin();it!=act_list.end();++it)
         {
-            std::cout<<it->GetActId()<<std::endl;
-            std::cout<<it->GetName()<<std::endl;
-            std::cout<<it->GetBeginDate()<<std::endl;
-            std::cout<<it->GetEndDate()<<std::endl;
-            std::cout<<it->GetStatus()<<std::endl;
-            std::cout<<it->GetDescription()<<std::endl;
-            std::cout<<it->GetCapacity()<<std::endl;
-            std::cout<<it->GetFacultyId()<<std::endl;
+            std::cout<<"ID: "<<it->GetActId()<<std::endl;
+            std::cout<<"Nombre: "<<it->GetName()<<std::endl;
+            std::cout<<"Fecha de Inicio: "<<it->GetBeginDate()<<std::endl;
+            std::cout<<"Fecha de Finalizacion: "<<it->GetEndDate()<<std::endl;
+            if(it->GetStatus()==true)
+            {
+                std::cout<<"Estado: Activada"<<std::endl;
+            }
+            else
+            {
+                std::cout<<"Estado: Desactivada"<<std::endl;
+            }
+            std::cout<<"Aforo: "<<it->GetCapacity()<<std::endl;
+            std::cout<<"ID de facultad: "<<it->GetFacultyId()<<std::endl;
+            std::cout<<"Descripcion: "<<it->GetDescription()<<std::endl<<std::endl;
         }
     }
 }
