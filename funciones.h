@@ -11,7 +11,7 @@ void AddInfo(Actividad a);
 void ShowAct(Actividad a);
 void HideAct(Actividad a);
 void SeeActs(int rol, std::list<Actividad> act_list);
-bool AddList(Actividad a,std::list <Actividad> act_list);
-bool DeleteList(Actividad a,std::list <Actividad> act_list);
+bool AddList(Actividad a,std::list<Actividad> act_list);
+bool DeleteList(Actividad a,std::list<Actividad> act_list);
 
 #endif
