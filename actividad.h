@@ -39,7 +39,7 @@ class Actividad{
 		void SetName(std::string name) {name_=name;}
 		void SetBeginDate(std::string begin_date) {begin_date_=begin_date;}
 		void SetEndDate(std::string end_date) {end_date_=end_date;}
-		void SetStatus(bool status) {status_=status};
+		void SetStatus(bool status) {status_=status;}
 		void SetDescription(std::string description) {description_=description;}
 		void SetCapacity(int capacity) {capacity_=capacity;}
 		void SetFacultyId(int faculty_id) {faculty_id_=faculty_id;}
