@@ -1,14 +1,75 @@
 #include "actividad.h"
 #include <fstream>
-#include <stdlib>
+#include <list>
 
-void Actividad::CreateAct(int act_count)
+void CreateAct(int act_count,std::list <Actividad> act_list)
 {
     Actividad a=Actividad(act_count);
     AddInfo(a);
+    AddList(a,act_list);
 }
 
-void Actividad::AddInfo(Actividad a)
+void ChangeAct(Actividad a)
+{
+    int id=a.GetActId();
+    std::cout<<"Seleccione el campo a modificar:"<<std::endl;
+    std::cout<<"1)Nombre"<<std::endl;
+    std::cout<<"2)Fecha de inicio"<<std::endl;
+    std::cout<<"3)Fecha de finalizacion"<<std::endl;
+    std::cout<<"4)Descripcion"<<std::endl;
+    std::cout<<"5)Aforo"<<std::endl;
+    std::cout<<"6)ID de la facultad"<<std::endl;
+    switch(int i)
+    {
+        case 1:
+            std::string n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetName(n);
+        break;
+
+        case 2:
+            std::string n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetBeginDate(n);
+        break;
+
+        case 3:
+            std::string n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetEndDate(n);
+        break;
+
+        case 4:
+            std::string n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetDescription(n);
+        break;
+
+        case 5:
+            int n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetCapacity(n);
+        break;
+
+        case 6:
+            int n;
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>n;
+            a.SetFacultyId(n);
+        break;
+
+        default:
+            std::cout<<"Error, valor incorrecto"<<std::endl;
+        break;
+    }
+}
+
+void AddInfo(Actividad a)
 {
     std::string name,description,begin_date,end_date;
 	int capacity,faculty_id;
@@ -31,86 +92,68 @@ void Actividad::AddInfo(Actividad a)
 	a.SetDescription(description);
 	a.SetCapacity(capacity);
 	a.SetFacultyId(faculty_id);
-    SaveAct(a);
 }
 
-void Actividad::SaveAct(Actividad a)
-{
-    std::ofstream f("actividades.txt");
-    if(f.is_open()==false)
-    {
-        std::cout<<"Error de apertura"<<std::endl;
-    }
-    else
-    {
-        f<<a.GetStatus()<<" "<<a.GetActId()<<" "<<a.GetName()<<" "<<a.GetDescription()<<" "<<a.GetBeginDate()<<" "<<a.GetEndDate()<<" "<<a.GetCapacity()<<" "<<a.GetFacultyId()<<std::endl;
-        f.close();
-    }
-}
-
-void Actividad::ShowAct(Actividad a)
+void ShowAct(Actividad a)
 {
     a.SetStatus(true);
-    SaveAct(a);
 }
 
-void Actividad::HideAct(Actividad a)
+void HideAct(Actividad a)
 {
     a.SetStatus(false);
-    SaveAct(a);
 }
 
-void Actividad::SeeActs(int rol)
+void SeeActs(int rol, std::list<Actividad> act_list)
 {
-    std::string s;
     if(rol==1 || rol==2)
     {
-        std::ifstream f("actividades.txt");
-        if(f.is_open()==false)
+        for(auto it=act_list.begin();it!=act_list.end();++it)
         {
-            std::cout<<"Error de apertura"<<std::endl;
-        }
-        else
-        {
-            while(!f.eof())
+            if(it->GetStatus()==true)
             {
-                if((f>>bool i)==true)
-                {
-                    getline(f,s);
-                    std::cout<<s<<std::endl;
-                }
+                std::cout<<it->GetActId()<<std::endl;
+                std::cout<<it->GetName()<<std::endl;
+                std::cout<<it->GetBeginDate()<<std::endl;
+                std::cout<<it->GetEndDate()<<std::endl;
+                std::cout<<it->GetDescription()<<std::endl;
+                std::cout<<it->GetCapacity()<<std::endl;
+                std::cout<<it->GetFacultyId()<<std::endl;
             }
-            f.close();
         }
     }
     else
     {
-        while(!f.eof())
+        for(auto it=act_list.begin();it!=act_list.end();++it)
         {
-            if((f>>bool i)==true)
-            {
-                getline(f,s);
-                std::cout<<s<<std::endl;
-            }
+            std::cout<<it->GetActId()<<std::endl;
+            std::cout<<it->GetName()<<std::endl;
+            std::cout<<it->GetBeginDate()<<std::endl;
+            std::cout<<it->GetEndDate()<<std::endl;
+            std::cout<<it->GetStatus()<<std::endl;
+            std::cout<<it->GetDescription()<<std::endl;
+            std::cout<<it->GetCapacity()<<std::endl;
+            std::cout<<it->GetFacultyId()<<std::endl;
         }
-        f.close();
     }
 }
 
-bool Actividad::AddList(Activity a){
-	for(auto it=activity_list_.begin(); it!=activity_list_.end(); ++it){
+bool AddList(Actividad a,std::list <Actividad> act_list)
+{
+	for(auto it=act_list.begin(); it!=act_list.end(); ++it){
 		if(it->GetActId()==a.GetActId()){
 			return false;
 		}
 	}
-	activity_list_.push_back(a);
+	act_list.push_back(a);
 	return true;
 }
 
-bool Actividad::DeleteList(Activity a){
-	for(auto it=activity_list_.begin(); it!=activity_list_.end(); ++it){
+bool DeleteList(Actividad a,std::list <Actividad> act_list)
+{
+	for(auto it=act_list.begin(); it!=act_list.end(); ++it){
 		if(it->GetActId()==a.GetActId()){
-			activity_list_.erase(it);
+			act_list.erase(it);
 			return true;
 		}
 	}
