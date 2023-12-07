@@ -2,8 +2,6 @@
 #include <fstream>
 #include "actividad.h"
 #include <list>
-#include <cstdio>
-#include <cstdlib>
 
 int main(void)
 {
@@ -17,14 +15,14 @@ int main(void)
     std::cout << "--> ";
     std::cin >> rol;
     std::string fichero;
-    std::cout<<"\nLlego\n";
+
     f.open("actividades.txt"); //ABRIMOS EL FICHERO
     if(f.is_open()==false)
     {
         printf("Error de la base de datos\n");
         exit(EXIT_FAILURE);
     }
-    std::cout<<"\nLlego\n";
+
     std::list<Actividad> act_list;
     Actividad aux(0);
     int act_id;
@@ -36,30 +34,33 @@ int main(void)
 	int capacity;
 	int faculty_id;
     int i=0;
-    while (f.eof()==false && i!=1)
-    {
-        f>>act_id>>name>>begin_date>>end_date>>status>>description>>capacity>>faculty_id;
-            std::cout<<"\nTAMBIEN LLEGO\n";
-            std::cout<<"\nLLEGO\n";
-            aux.SetActId(act_id);
-            aux.SetName(name);
-            aux.SetBeginDate(begin_date);
-            aux.SetEndDate(end_date);
-            aux.SetStatus(status);
-            std::cout<<description;
-            aux.SetDescription(description);
-            aux.SetCapacity(capacity);
-            aux.SetFacultyId(faculty_id);
-            act_list.push_back(aux);
-            i++;
-    }
-    std::cout<<"\nTAMBIEN\n";
-    for(auto it=act_list.begin(); it!=act_list.end(); it++)
-    {
-        std::cout<<it->GetActId()<<it->GetBeginDate()<<it->GetDescription();
-    }
     
+    while(f>>act_id) //LA VARIABLE ACT_ID SIRVE COMO CONTADOR PARA SABER QUÉ ID PONERLE A LA NUEVA ACTIVIDAD CREADA
+    {
+        f.ignore();
+        getline(f, name);
+        getline(f, begin_date);
+        getline(f, end_date);
+        f>>status;
+        f.ignore();
+        getline(f, description);
+        f>>capacity;
+        f.ignore();
+        f>>faculty_id;
+        f.ignore();
+        aux.SetActId(act_id);
+        aux.SetName(name);
+        aux.SetBeginDate(begin_date);
+        aux.SetEndDate(end_date);
+        aux.SetStatus(status);
+        aux.SetDescription(description);
+        aux.SetCapacity(capacity);
+        aux.SetFacultyId(faculty_id);
+        act_list.push_back(aux);
+    }
 
+    f.close();
+    
     if(rol==1)
     {
         while(opt!=0)
