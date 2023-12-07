@@ -2,6 +2,7 @@
 #define FUNCIONES_H
 
 #include "actividad.h"
+#include <iostream>
 #include <list>
 
 void CreateAct(int act_count,std::list <Actividad> act_list);
