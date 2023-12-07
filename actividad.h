@@ -43,13 +43,6 @@ class Actividad{
 		void SetDescription(std::string description) {description_=description;}
 		void SetCapacity(int capacity) {capacity_=capacity;}
 		void SetFacultyId(int faculty_id) {faculty_id_=faculty_id;}
-
-		void CreateAct();
-		void AddInfo(Actividad a);
-		void SaveAct(Actividad a);
-		void ShowAct(Actividad a);
-		void HideAct(Actividad a);
-		void SeeActs(int rol);
 };
 
 #endif
