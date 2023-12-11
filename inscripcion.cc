@@ -44,12 +44,31 @@ bool CreateIns(Preinscripcion p,std::list <Inscripcion> ins_list,std::list <Prei
     return true;
 }
 
-bool SeeIns(std::list <Inscripcion> ins_list)
+bool SeeIns(int rol,std::list <Inscripcion> ins_list)
 {
-    for(auto it=ins_list.begin();it!=ins_list.end();++it)
+    if(rol==2)
     {
+        std::string nick;
+        std::cout<<"Introduzca su nick: "
+        std::cin>>nick;
+        std::cout<<"Estas son sus inscripciones:"<<std::endl<<std::endl;
+        for(auto it=ins_list.begin();it!=ins_list.end();++it)
+        {
+            if(it->GetUser()==nick)
+            {
+                std::cout<<"ID: "<<it->GetInsId()<<std::endl;
+                std::cout<<"Usuario: "<<it->GetUser()<<std::endl;
+                std::cout<<"ID de actividad: "<<it->GetActId()<<std::endl<<std::endl;
+            }
+        }
+    }
+    else if(rol>2)
+    {
+        for(auto it=ins_list.begin();it!=ins_list.end();++it)
+        {
             std::cout<<"ID: "<<it->GetInsId()<<std::endl;
             std::cout<<"Usuario: "<<it->GetUser()<<std::endl;
             std::cout<<"ID de actividad: "<<it->GetActId()<<std::endl<<std::endl;
+        }
     }
 }
