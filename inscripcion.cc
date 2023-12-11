@@ -44,7 +44,7 @@ bool CreateIns(Preinscripcion p,std::list <Inscripcion> ins_list,std::list <Prei
     return true;
 }
 
-bool ShowIns(std::list <Inscripcion> ins_list)
+bool SeeIns(std::list <Inscripcion> ins_list)
 {
     for(auto it=ins_list.begin();it!=ins_list.end();++it)
     {
