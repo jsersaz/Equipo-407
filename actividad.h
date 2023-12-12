@@ -1,9 +1,8 @@
-#ifndef ACTIVIDAD_H //PONER LA DECLARACIÓN DE LAS FUNCIONES DEL .CC EN EL .H
+#ifndef ACTIVIDAD_H
 #define ACTIVIDAD_H
 
 #include <iostream>
 #include <string>
-#include <list>
 
 class Actividad{
 	private:
@@ -13,6 +12,7 @@ class Actividad{
 		std::string end_date_;
 		bool status_;
 		std::string description_;
+		float price_;
 		int capacity_;
 		int faculty_id_;
 
@@ -23,6 +23,7 @@ class Actividad{
 					std::string end_date="empty",
 					bool status=false,
 					std::string description="empty",
+					float price=0.0,
 					int capacity=0,
 					int faculty_id=0) {act_id_=act_id;}
 		
@@ -32,6 +33,7 @@ class Actividad{
 		std::string GetEndDate() {return end_date_;}
 		bool GetStatus() {return status_;}
 		std::string GetDescription() {return description_;}
+		float GetPrice() {return price_;}
 		int GetCapacity() {return capacity_;}
 		int GetFacultyId() {return faculty_id_;}
 
@@ -39,39 +41,11 @@ class Actividad{
 		void SetName(std::string name) {name_=name;}
 		void SetBeginDate(std::string begin_date) {begin_date_=begin_date;}
 		void SetEndDate(std::string end_date) {end_date_=end_date;}
-		void SetStatus(bool status) {status_=status;} //FALTA PUNTO Y COMA
+		void SetStatus(bool status) {status_=status;}
 		void SetDescription(std::string description) {description_=description;}
+		void SetPrice(float price) {price_=price;}
 		void SetCapacity(int capacity) {capacity_=capacity;}
 		void SetFacultyId(int faculty_id) {faculty_id_=faculty_id;}
 };
-
-void ChangeAct(Actividad &a);
-
-void CreateAct(int act_count,std::list <Actividad> &act_list);
-
-void AddInfo(Actividad &a);
-
-void ShowAct(Actividad &a); //PASAR POR REFERENCIA
-
-void HideAct(Actividad &a); //PASAR POR REFERENCIA
-
-void SeeActs(int rol, std::list<Actividad> act_list);
-
-bool AddList(Actividad a,std::list <Actividad> &act_list);
-
-bool DeleteList(Actividad a,std::list <Actividad> &act_list);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
