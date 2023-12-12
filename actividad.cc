@@ -1,5 +1,4 @@
 #include "actividad.h"
-#include <fstream>
 #include <list>
 
 void CreateAct(int act_count,std::list <Actividad> &act_list)
