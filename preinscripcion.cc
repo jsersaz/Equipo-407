@@ -4,7 +4,7 @@
 #include <string>
 #include <list>
 
-void CreatePreinscription(int pre_count, std::string act_id, int capacity, std::list <Preinscripcion> pre_list){
+void CreatePreinscription(int pre_count, int act_id, int &capacity, std::list <Preinscripcion> &pre_list){
 	if(capacity>0){
 		Preinscripcion p=Preinscripcion(pre_count, act_id);
 		AddData(p);
@@ -16,14 +16,14 @@ void CreatePreinscription(int pre_count, std::string act_id, int capacity, std::
 	}
 }
 
-void AddData(Preinscripcion p){
+void AddData(Preinscripcion &p){
 	std::string user;
 	std::cout<<"Introduzca su usuario: ";
 	std::cin>>user;
 	p.SetUser(user);
 }
 
-void SeePreinscriptions(){
+void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list){
 	std::string nick;
 	std::cout<<"Introduzca su usuario: ";
 	std::cin>>nick;
@@ -51,19 +51,19 @@ void SeePreinscriptions(){
     }
 }
 
-void MakePayment(std::string pre_id, std::list <Preinscripcion> pre_list){
+void MakePayment(int pre_id, std::list <Preinscripcion> &pre_list){
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
 		if(it->GetPreId()==pre_id){
-			p.SetPayNote(true);
+			it->SetPayNote(true);
 		}
 	}
 }
 
-void ChangeStatus(std::string pre_id, std::list <Preinscripcion> pre_list){
+void ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list){
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
 		if(p.GetPayNote()==true){
 			if(it->GetPreId()==pre_id){
-				p.SetStatus(true);
+				it->SetStatus(true);
 				std::cout<<"Preinscripción aceptada\n";
 			}
 		}
@@ -73,7 +73,7 @@ void ChangeStatus(std::string pre_id, std::list <Preinscripcion> pre_list){
 	}
 }
 
-bool AddListPre(Preinscripcion p, std::list <Preinscripcion> pre_list){
+bool AddListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list){
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
 		if(it->GetPreId()==p.GetPreId()){
 			return false;
@@ -83,7 +83,7 @@ bool AddListPre(Preinscripcion p, std::list <Preinscripcion> pre_list){
 	return true;
 }
 
-bool DeleteListPre(Preinscripcion p, std::list <Preinscripcion> pre_list){
+bool DeleteListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list){
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
 		if(it->GetPreId()==p.GetPreId()){
 			pre_list.erase(it);
