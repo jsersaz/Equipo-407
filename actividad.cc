@@ -15,16 +15,18 @@ void ChangeAct(Actividad &a)
     std::cout<<"Seleccione el campo a modificar:"<<std::endl;
     std::cout<<"1)Nombre"<<std::endl;
     std::cout<<"2)Fecha de inicio"<<std::endl;
-    std::cout<<"3)Fecha de finalizacion"<<std::endl;
-    std::cout<<"4)Descripcion"<<std::endl;
-    std::cout<<"5)Aforo"<<std::endl;
-    std::cout<<"6)ID de la facultad"<<std::endl<<std::endl;
+    std::cout<<"3)Fecha de finalización"<<std::endl;
+    std::cout<<"4)Descripción"<<std::endl;
+    std::cout<<"5)Precio"<<std::endl;
+    std::cout<<"6)Aforo"<<std::endl;
+    std::cout<<"7)ID de la facultad"<<std::endl<<std::endl;
     std::cout<<"-->";
     std::cout<<std::endl;
     int i;
     std::cin>>i;
     std::string n;
     int m;
+	float j;
     switch(i) //NO SE PUEDEN DECLARAR VARIAS VARIABLES CON EL MISMO NOMBRE Y DISTINTO TIPO, DECLARAR TODAS ANTES DE EMPEZAR EL SWITCH
     { //DECLARAR i ANTES DE ELEGIR EL SWITCH Y HACER cin
         case 1:
@@ -51,13 +53,19 @@ void ChangeAct(Actividad &a)
             a.SetDescription(n);
         break;
 
-        case 5://CAMBIAR m POR EJEMPLO
+		case 5:
+            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cin>>j;
+            a.SetPrice(j);
+        break;
+
+        case 6://CAMBIAR m POR EJEMPLO
             std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
             std::cin>>m;
             a.SetCapacity(m);
         break;
 
-        case 6: //CAMBIAR A m POR EJEMPLO
+        case 7: //CAMBIAR A m POR EJEMPLO
             std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
             std::cin>>m;
             a.SetFacultyId(m);
@@ -74,18 +82,21 @@ void AddInfo(Actividad &a)
 
     std::string name ,description ,begin_date ,end_date;
 	int capacity,faculty_id;
+	float price;
     std::cout<<"Introduzca el nombre de la actividad: ";
     std::cin.ignore();
     getline(std::cin, name);
     std::cout<<"Introduzca la fecha de inicio de la actividad: ";
     std::cin>>begin_date;
-    std::cout<<"Introduzca la fecha de finalizacion de la actividad: ";
+    std::cout<<"Introduzca la fecha de finalización de la actividad: ";
     std::cin>>end_date;
     std::cout<<"Introduzca el aforo de la actividad: ";
     std::cin>>capacity;
+	std::cout<<"Introduzca el precio de inscripción a la actividad: ";
+    std::cin>>price;
     std::cout<<"Introduzca el id de la facultad a la que se asocia la actividad: ";
     std::cin>>faculty_id;
-    std::cout<<"Introduzca la descripcion de la actividad: ";
+    std::cout<<"Introduzca la descripción de la actividad: ";
     std::cin.ignore();
     getline(std::cin, description);
     a.SetName(name);
@@ -94,6 +105,7 @@ void AddInfo(Actividad &a)
 	a.SetStatus(false);
 	a.SetDescription(description);
 	a.SetCapacity(capacity);
+	a.SetPrice(price);
 	a.SetFacultyId(faculty_id);
 }
 
@@ -122,6 +134,7 @@ void SeeActs(int rol, std::list<Actividad> act_list)
                 std::cout<<"Fecha de Inicio:            "<<it->GetBeginDate()<<std::endl;
                 std::cout<<"Fecha de Finalizacion:      "<<it->GetEndDate()<<std::endl;
                 std::cout<<"Aforo:                      "<<it->GetCapacity()<<std::endl;
+                std::cout<<"Precio:                     "<<it->GetPrice()<<std::endl;
                 std::cout<<"ID de la facultad asociada: "<<it->GetFacultyId()<<std::endl;
                 std::cout<<it->GetDescription()<<std::endl;
                 std::cout<<std::endl;
@@ -148,6 +161,7 @@ void SeeActs(int rol, std::list<Actividad> act_list)
                 std::cout<<"Fecha de Inicio:            "<<it->GetBeginDate()<<std::endl;
                 std::cout<<"Fecha de Finalizacion:      "<<it->GetEndDate()<<std::endl;
                 std::cout<<"Aforo:                      "<<it->GetCapacity()<<std::endl;
+                std::cout<<"Precio:                     "<<it->GetPrice()<<std::endl;
                 std::cout<<"ID de la facultad asociada: "<<it->GetFacultyId()<<std::endl;
                 if(it->GetStatus()==1)
                 {
