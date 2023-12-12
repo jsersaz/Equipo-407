@@ -1,4 +1,4 @@
-#ifndef ACTIVIDAD_H
+#ifndef ACTIVIDAD_H //PONER LA DECLARACIÓN DE LAS FUNCIONES DEL .CC EN EL .H
 #define ACTIVIDAD_H
 
 #include <iostream>
@@ -39,10 +39,39 @@ class Actividad{
 		void SetName(std::string name) {name_=name;}
 		void SetBeginDate(std::string begin_date) {begin_date_=begin_date;}
 		void SetEndDate(std::string end_date) {end_date_=end_date;}
-		void SetStatus(bool status) {status_=status;}
+		void SetStatus(bool status) {status_=status;} //FALTA PUNTO Y COMA
 		void SetDescription(std::string description) {description_=description;}
 		void SetCapacity(int capacity) {capacity_=capacity;}
 		void SetFacultyId(int faculty_id) {faculty_id_=faculty_id;}
 };
+
+void ChangeAct(Actividad &a);
+
+void CreateAct(int act_count,std::list <Actividad> &act_list);
+
+void AddInfo(Actividad &a);
+
+void ShowAct(Actividad &a); //PASAR POR REFERENCIA
+
+void HideAct(Actividad &a); //PASAR POR REFERENCIA
+
+void SeeActs(int rol, std::list<Actividad> act_list);
+
+bool AddList(Actividad a,std::list <Actividad> &act_list);
+
+bool DeleteList(Actividad a,std::list <Actividad> &act_list);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif
