@@ -38,4 +38,20 @@ public:
     void SetStatus(bool status){status_=status;}
     void SetPreId(int preins_id){preins_id_=preins_id;}
 };
+
+void CreatePreinscription(int pre_count, int act_id, int capacity, std::list <Preinscripcion> &pre_list);
+
+void AddData(Preinscripcion &p);
+
+void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list);
+
+void MakePayment(int pre_id, std::list <Preinscripcion> &pre_list);
+
+void ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list);
+
+bool AddListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list);
+
+bool DeleteListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list);
+
+
 #endif
