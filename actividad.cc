@@ -1,4 +1,5 @@
 #include "actividad.h"
+#include "funciones.h"
 #include <list>
 
 void CreateAct(int act_count,std::list <Actividad> &act_list)
@@ -11,6 +12,7 @@ void CreateAct(int act_count,std::list <Actividad> &act_list)
 void ChangeAct(Actividad &a)
 {
     int id=a.GetActId();
+    std::cout<<"-----------------------------------------------------------------------\n";
     std::cout<<"Seleccione el campo a modificar:"<<std::endl;
     std::cout<<"1)Nombre"<<std::endl;
     std::cout<<"2)Fecha de inicio"<<std::endl;
@@ -18,11 +20,12 @@ void ChangeAct(Actividad &a)
     std::cout<<"4)Descripción"<<std::endl;
     std::cout<<"5)Precio"<<std::endl;
     std::cout<<"6)Aforo"<<std::endl;
-    std::cout<<"7)ID de la facultad"<<std::endl<<std::endl;
-    std::cout<<"-->";
-    std::cout<<std::endl;
+    std::cout<<"7)ID de la facultad"<<std::endl;
+    std::cout<<"-----------------------------------------------------------------------\n"<<std::endl;
+    std::cout<<"--> ";
     int i;
     std::cin>>i;
+    std::cout<<std::endl;
     std::string n;
     int m;
 	float j;
@@ -141,14 +144,14 @@ void SeeActs(int rol, std::list<Actividad> act_list)
         }
         if(cont==0)
         {
-            std::cout<<"No hay actividades activas en este momento"<<std::endl;
+            std::cout<<"~No hay actividades activas en este momento~"<<std::endl;
         }
     }
     else
     {
         if(act_list.size()==0)
         {
-            std::cout<<"No existe ninguna actividad"<<std::endl;
+            std::cout<<"~No existe ninguna actividad~"<<std::endl;
         }
         else
         {
