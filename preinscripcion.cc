@@ -1,52 +1,68 @@
 #include "preinscripcion.h"
 #include "actividad.h"
+#include "funciones.h"
 #include <iostream>
 #include <string>
 #include <list>
 
-void CreatePreinscription(int pre_count, int act_id, int &capacity, std::list <Preinscripcion> &pre_list){
+void CreatePreinscription(int pre_count, int act_id, int &capacity, std::list <Preinscripcion> &pre_list, std::string nick){ //HE PASADO EL NICK COMO ARGUMENTO
 	if(capacity>0){
 		Preinscripcion p=Preinscripcion(pre_count, act_id);
-		AddData(p);
+		AddData(p, nick);
 		AddListPre(p,pre_list);
 		capacity--;
+		
 	}
 	else{
-		std::cout<<"Aforo insuficiente. Imposible crear la preinscripción\n";
+		std::cout<<"~Aforo insuficiente. Imposible crear la preinscripción~\n";
 	}
 }
 
-void AddData(Preinscripcion &p){
-	std::string user;
-	std::cout<<"Introduzca su usuario: ";
-	std::cin>>user;
+void AddData(Preinscripcion &p, std::string user){
+	
 	p.SetUser(user);
 }
 
-void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list){
-	std::string nick;
-	std::cout<<"Introduzca su usuario: ";
-	std::cin>>nick;
+void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list, std::string nick){ //HE CAMBIADO A PASAR EL NICK COMO ARGUMENTO
+	
+	int cont=0;
 	if(rol==2){
         for(auto it=pre_list.begin();it!=pre_list.end();++it){
             if(it->GetUser()==nick){
+				cont++;
+				std::cout<<std::endl;
                 std::cout<<"ID de preinscripción: "<<it->GetPreId()<<std::endl;
-                std::cout<<"Usuario: "<<it->GetUser()<<std::endl;
-				std::cout<<"ID de actividad: "<<it->GetActId()<<std::endl;
+                std::cout<<"Usuario:              "<<it->GetUser()<<std::endl;
+				std::cout<<"ID de actividad:      "<<it->GetActId()<<std::endl;
+				if(it->GetPayNote()==true){
+				std::cout<<"Estado:               PAGADA"<<std::endl;
+				}
+				else{
+				std::cout<<"Estado:               NO PAGADA"<<std::endl;
+				}
             }
         }
+		if(cont==0)
+		{
+			std::cout<<std::endl<<"~No esta preinscrito en ninguna actividad en este momento ~"<<std::endl;
+		}
     }
     else if(rol==3||rol==4){
+		if(pre_list.size()==0)
+		{
+			std::cout<<std::endl<<"~No existe ninguna inscripcion~"<<std::endl;
+		}
         for(auto it=pre_list.begin();it!=pre_list.end();++it){
             std::cout<<"ID de preinscripción: "<<it->GetPreId()<<std::endl;
-			std::cout<<"Usuario: "<<it->GetUser()<<std::endl;
-			std::cout<<"ID de actividad: "<<it->GetActId()<<std::endl;
-            if(it->GetStatus()==true){
-                std::cout<<"Estado: Aceptada"<<std::endl;
+			std::cout<<"Usuario:              "<<it->GetUser()<<std::endl;
+			std::cout<<"ID de actividad:      "<<it->GetActId()<<std::endl;
+            if(it->GetPayNote()==true){
+            std::cout<<"Estado:               PAGADA"<<std::endl;
             }
             else{
-                std::cout<<"Estado: No aceptada"<<std::endl;
+            std::cout<<"Estado:               NO PAGADA"<<std::endl;
             }
+			std::cout<<std::endl;
         }
     }
 }
@@ -59,18 +75,20 @@ void MakePayment(int pre_id, std::list <Preinscripcion> &pre_list){
 	}
 }
 
-void ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list){
+bool ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list){ 
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
-		if(p.GetPayNote()==true){
+		if(it->GetPayNote()==true){
 			if(it->GetPreId()==pre_id){
 				it->SetStatus(true);
-				std::cout<<"Preinscripción aceptada\n";
+				return true;
 			}
 		}
 		else{
-			std::cout<<"Pagaré no enviado. Imposible aceptar la preinscripción\n";
+			std::cout<<"~Pagaré no enviado. Imposible aceptar la preinscripción "<<pre_id<<"~\n";
+			return false;
 		}
 	}
+	return true;
 }
 
 bool AddListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list){
