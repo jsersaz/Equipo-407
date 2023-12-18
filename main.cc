@@ -317,7 +317,7 @@ int main(void)
                         }
                         else
                         {
-                            MakePayment(aux_id, pre_list);
+                            MakePayment(it->GetPreId(), pre_list);
                             std::cout<<"~Pagare subido correctamente~\n";
                         }
                         break;
