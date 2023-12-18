@@ -19,12 +19,13 @@ private:
 
 public:
     // Constructor
-    Preinscripcion(int preins_id, int act_id, std::string user = "empty", bool status = false, float price = 0)
+    Preinscripcion(int preins_id, int act_id, std::string user = "empty", bool status = false, bool paynote=false)
     {
         preins_id_=preins_id;
         user_ = user;
         act_id_ = act_id;
         status_ = status;
+        paynote_=paynote;
     }
 
     bool GetPayNote(){return paynote_;}
@@ -38,20 +39,6 @@ public:
     void SetStatus(bool status){status_=status;}
     void SetPreId(int preins_id){preins_id_=preins_id;}
 };
-
-void CreatePreinscription(int pre_count, int act_id, int capacity, std::list <Preinscripcion> &pre_list);
-
-void AddData(Preinscripcion &p);
-
-void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list);
-
-void MakePayment(int pre_id, std::list <Preinscripcion> &pre_list);
-
-void ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list);
-
-bool AddListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list);
-
-bool DeleteListPre(Preinscripcion p, std::list <Preinscripcion> &pre_list);
 
 
 #endif

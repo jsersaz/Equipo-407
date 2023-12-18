@@ -276,9 +276,12 @@ int main(void)
                         {
                             cont++;
                             CreatePreinscription(pre_id, aux_id, aux_capacity, pre_list, user);
-                            pre_id++;
-                            it->SetCapacity(aux_capacity);
-                            std::cout<<"~Su preinscripción ha sido enviada~\n";
+                            if(it->GetCapacity()>0)
+                            {
+                                pre_id++;
+                                it->SetCapacity(aux_capacity);
+                                std::cout<<"~Su preinscripción ha sido enviada~\n";
+                            }
                         }
                     }
                 }
@@ -567,23 +570,31 @@ int main(void)
                         std::cout<<"\n~Actividad eliminada correctamente~\n";
                         cont=pre_list.size();
                         auto it=pre_list.begin();
+                        
                         for(int i=0; i<cont; i++)
                         {
                             if(aux_id==it->GetActId())
                             {
-                                pre_list.erase(it);
+                                it=pre_list.erase(it);
                             }
-                            it++;
+                            else
+                            {
+                                it++;
+                            }
                         }
                         cont=ins_list.size();
-                        auto it1=ins_list.begin();
+                        auto it2=ins_list.begin();
+                        
                         for(int i=0; i<cont; i++)
                         {
-                            if(aux_id==it1->GetActId())
+                            if(aux_id==it2->GetActId())
                             {
-                                ins_list.erase(it1);
+                                it2=ins_list.erase(it2);
                             }
-                            it1++;
+                            else
+                            {
+                                it2++;
+                            }
                         }
                         cont=1;
                         break;
