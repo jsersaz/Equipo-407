@@ -2,6 +2,19 @@
 #include "funciones.h"
 #include <list>
 
+Actividad::Actividad(int act_id,std::string name, std::string begin_date, std::string end_date, bool status,std::string description,float price,int capacity,int faculty_id)
+{
+    act_id_=act_id;
+    name_=name;
+    begin_date_=begin_date;
+    end_date_=end_date;
+    status_=status;
+    description_=description;
+    price_=price;
+    capacity_=capacity;
+    faculty_id_=faculty_id;
+}
+
 void CreateAct(int act_count,std::list <Actividad> &act_list)
 {
     Actividad a(act_count);
@@ -32,49 +45,49 @@ void ChangeAct(Actividad &a)
     switch(i) //NO SE PUEDEN DECLARAR VARIAS VARIABLES CON EL MISMO NOMBRE Y DISTINTO TIPO, DECLARAR TODAS ANTES DE EMPEZAR EL SWITCH
     { //DECLARAR i ANTES DE ELEGIR EL SWITCH Y HACER cin
         case 1:
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>n;
             a.SetName(n);
         break;
 
         case 2:
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>n;
             a.SetBeginDate(n);
         break;
 
         case 3:
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>n;
             a.SetEndDate(n);
         break;
 
         case 4:
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>n;
             a.SetDescription(n);
         break;
 
 		case 5:
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>j;
             a.SetPrice(j);
         break;
 
         case 6://CAMBIAR m POR EJEMPLO
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>m;
             a.SetCapacity(m);
         break;
 
         case 7: //CAMBIAR A m POR EJEMPLO
-            std::cout<<"Introduzca el nuevo campo para la actividad"<<std::endl;
+            std::cout<<"Introduzca el nuevo campo para la actividad: ";
             std::cin>>m;
             a.SetFacultyId(m);
         break;
 
         default:
-            std::cout<<"Error, valor incorrecto"<<std::endl;
+            std::cout<<"~Opcion no valida~\n"<<std::endl;
         break;
     }
 }
@@ -202,4 +215,53 @@ bool DeleteList(Actividad a,std::list <Actividad> &act_list)
 		}
 	}
 	return false;
+}
+
+bool FindList(int act_id, std::list <Actividad> act_list)
+{
+    for(auto it=act_list.begin(); it!=act_list.end(); it++)
+    {
+        if(act_id==it->GetActId())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool CheckString1(std::string aux, int &num)
+{
+    if(isdigit(aux[0])==0)
+    {
+        num=20;
+        return false;
+    }
+    num=TurnInt(aux);
+    return true;
+}
+
+bool CheckStringN(std::string aux, int &num)
+{
+    if(aux.size()==0)
+    {
+        num=1000;
+        return false;
+    }
+    for(int i=0; i<aux.size(); i++)
+    {
+        if(isdigit(aux[i])==0)
+        {
+            num=1000;
+            return false;
+        }
+    }
+    num=TurnInt(aux);
+    return true;
+}
+
+int TurnInt(std::string aux)
+{
+    int aux2;
+    aux2=stoi(aux);
+    return aux2;
 }

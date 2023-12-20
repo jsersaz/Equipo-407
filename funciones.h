@@ -15,6 +15,10 @@ void HideAct(Actividad &a);
 void SeeActs(int rol, std::list<Actividad> act_list);
 bool AddList(Actividad a,std::list<Actividad> &act_list);
 bool DeleteList(Actividad a,std::list<Actividad> &act_list);
+bool FindList(int act_id, std::list <Actividad> act_list);
+bool CheckString1(std::string aux, int &num);
+bool CheckStringN(std::string aux, int &num);
+int TurnInt(std::string aux);
 
 void CreatePreinscription(int pre_count, int act_id, int &capacity, std::list <Preinscripcion> &pre_list, std::string nick);
 void AddData(Preinscripcion &p, std::string user);

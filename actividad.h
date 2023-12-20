@@ -25,7 +25,7 @@ class Actividad{
 					std::string description="empty",
 					float price=0.0,
 					int capacity=0,
-					int faculty_id=0) {act_id_=act_id;}
+					int faculty_id=0);
 		
 		int GetActId() {return act_id_;}
 		std::string GetName() {return name_;}
