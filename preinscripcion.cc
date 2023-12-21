@@ -44,7 +44,7 @@ void SeePreinscriptions(int rol, std::list <Preinscripcion> pre_list, std::strin
         }
 		if(cont==0)
 		{
-			std::cout<<std::endl<<"~No esta preinscrito en ninguna actividad en este momento ~"<<std::endl;
+			std::cout<<std::endl<<"~No esta preinscrito en ninguna actividad en este momento~"<<std::endl;
 		}
     }
     else if(rol==3||rol==4){
@@ -77,15 +77,16 @@ void MakePayment(int pre_id, std::list <Preinscripcion> &pre_list){
 
 bool ChangeStatus(int pre_id, std::list <Preinscripcion> &pre_list){ 
 	for(auto it=pre_list.begin(); it!=pre_list.end(); ++it){
-		if(it->GetPayNote()==true){
-			if(it->GetPreId()==pre_id){
+		if(it->GetPreId()==pre_id)
+		{
+			if(it->GetPayNote()==true){
 				it->SetStatus(true);
 				return true;
 			}
-		}
-		else{
-			std::cout<<"~Pagaré no enviado. Imposible aceptar la preinscripción "<<pre_id<<"~\n";
-			return false;
+			else{
+				std::cout<<"~Pagaré no enviado. Imposible aceptar la preinscripción "<<pre_id<<"~\n";
+				return false;
+			}
 		}
 	}
 	return true;
