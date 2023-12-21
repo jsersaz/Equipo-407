@@ -1,5 +1,6 @@
 -- UCOTalleres --
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Los ficheros individuales están a modo de muestra para poder verificar el progreso del trabajo a lo largo de la implementación.
 
@@ -9,7 +10,7 @@ Si desea usar el programa con algunas actividades ya predefinidas puede descarga
 
 Si prefiere crear sus propios ficheros no necesita utilizar los presentes en el repositorio GitHub, al ejecutar el programa se crearán unos nuevos.
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **ESTAS INSTRUCCIONES SON PARA SU USO EN LINUX**
 
@@ -21,7 +22,7 @@ El ejecutable del programa será "UCOTalleres_exe", que se encuentra en el direc
 
 Deberá ejecutar el programa desde el directorio anterior de esta forma: ./UCOTalleres_exe
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Susana Molero Rodríguez
 
